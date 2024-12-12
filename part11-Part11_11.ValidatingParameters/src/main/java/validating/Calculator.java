@@ -2,21 +2,31 @@ package validating;
 
 public class Calculator {
 
-    public int factorial(int num) {
+    public int factorial(int number) {
 
-        int answer = 1;
-        for (int i = 1; i <= num; i++) {
-            answer *= i;
+        if (number >= 0) {
+            int result = 1;
+            for (int i = 1; i <= number; i++) {
+                result *= i;
+            }
+            return result;
+
+        } else {
+            throw new IllegalArgumentException("Factorial input must be non-negative.");
         }
-
-        return answer;
     }
 
     public int binomialCoefficent(int setSize, int subsetSize) {
 
-        int numerator = factorial(setSize);
-        int denominator = factorial(subsetSize) * factorial(setSize - subsetSize);
+        if (setSize >= 0 && subsetSize >= 0 && subsetSize <= setSize) {
 
-        return numerator / denominator;
+            int numerator = factorial(setSize);
+            int denominator = factorial(subsetSize) * factorial(setSize - subsetSize);
+
+            return numerator / denominator;
+
+        } else {
+            throw new IllegalArgumentException("Subset size must be between 0 and total items.");
+        }
     }
 }
